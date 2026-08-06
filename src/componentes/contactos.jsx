@@ -15,8 +15,10 @@
           </button>
         </div>
       </div>
-      <p className="card-info">📞 {telefono}</p>
-      <p className="card-info">✉️ {correo}</p>
+      <div className="card-details">
+        <p className="card-info">📞 {telefono}</p>
+        <p className="card-info">✉️ {correo}</p>
+      </div>
     </article>
   );
 }

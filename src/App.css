@@ -259,6 +259,136 @@ textarea:focus {
 }
 
 .card-contacto {
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.20);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-contacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(197, 167, 109, 0.16), transparent 22%),
+    radial-gradient(circle at bottom left, rgba(180, 183, 188, 0.08), transparent 20%);
+  pointer-events: none;
+}
+
+.card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.card-nombre {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f8e9b9;
+}
+
+.card-etiqueta {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255, 236, 196, 0.16);
+  color: #f8db8a;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.edit-action,
+.delete-action {
+  border: none;
+  font: inherit;
+  padding: 12px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.25s ease, filter 0.25s ease, background-color 0.25s ease;
+}
+
+.edit-action {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ece6d2;
+}
+
+.delete-action {
+  background: rgba(242, 180, 180, 0.16);
+  color: #ffdddd;
+}
+
+.edit-action:hover,
+.delete-action:hover {
+  transform: translateY(-1px);
+}
+
+.card-details {
+  display: grid;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-info {
+  margin: 0;
+  color: #d0c3a0;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 1024px) {
+  .app-header,
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell {
+    padding: 22px;
+  }
+
+  .panel,
+  .panel-header {
+    padding: 24px;
+  }
+
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.card-contacto {
   padding: 26px;
   border-radius: 26px;
   background: rgba(255, 255, 255, 0.04);
