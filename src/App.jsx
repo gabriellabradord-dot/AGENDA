@@ -84,6 +84,7 @@ function App() {
           <p className="subtitle">
             Una interfaz profesional en tonos mate negro, dorado y silver para gestionar tu agenda con estilo.
           </p>
+          <p className="storage-note">Los contactos se guardan automáticamente en este navegador con localStorage.</p>
         </div>
         <div className="stats-panel">
           <span>{contactos.length} contactos</span>
