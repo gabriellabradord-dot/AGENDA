@@ -1,4 +1,4 @@
-﻿export default function Contactos({ nombre, telefono, correo, etiqueta, onEdit }) {
+﻿export default function Contactos({ nombre, telefono, correo, etiqueta, onEdit, onDelete }) {
   return (
     <article className="card-contacto">
       <div className="card-top">
@@ -6,9 +6,14 @@
           <h3 className="card-nombre">{nombre}</h3>
           <span className="card-etiqueta">{etiqueta || "Contacto"}</span>
         </div>
-        <button type="button" className="edit-action" onClick={onEdit}>
-          Editar
-        </button>
+        <div className="card-actions">
+          <button type="button" className="edit-action" onClick={onEdit}>
+            Editar
+          </button>
+          <button type="button" className="delete-action" onClick={onDelete}>
+            Eliminar
+          </button>
+        </div>
       </div>
       <p className="card-info">📞 {telefono}</p>
       <p className="card-info">✉️ {correo}</p>

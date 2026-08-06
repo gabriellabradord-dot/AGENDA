@@ -287,6 +287,12 @@ textarea:focus {
   z-index: 1;
 }
 
+.card-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .card-nombre {
   margin: 0 0 10px;
   font-size: 1.2rem;
@@ -315,7 +321,8 @@ textarea:focus {
   z-index: 1;
 }
 
-.edit-action {
+.edit-action,
+.delete-action {
   border: none;
   background: rgba(255, 255, 255, 0.05);
   color: var(--silver);
@@ -325,12 +332,16 @@ textarea:focus {
   transition: all 0.25s ease;
 }
 
-.edit-action:hover {
+.edit-action:hover,
+.delete-action:hover {
   background: rgba(197, 167, 109, 0.14);
   color: #fff;
   transform: translateY(-1px);
 }
 
+.delete-action {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
 .app-shell,
 .panel,
 .card-contacto {
