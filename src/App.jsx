@@ -1,6 +1,9 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
 import Contactos from "./componentes/contactos";
+import FormularioContactos from "./componentes/FormularioContactos";
 import "./App.css";
+
+const LOCAL_STORAGE_KEY = "miProyectoContactos";
 
 function App() {
   const initialContactos = [
@@ -10,7 +13,10 @@ function App() {
     { id: 4, nombre: "Andrés Pérez", telefono: "320 987 6543", correo: "andres@gmail.com", etiqueta: "Amigo" },
   ];
 
-  const [contactos, setContactos] = useState(initialContactos);
+  const [contactos, setContactos] = useState(() => {
+    const stored = localStorage.getItem(LOCAL_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : initialContactos;
+  });
   const [formData, setFormData] = useState({ nombre: "", telefono: "", correo: "", etiqueta: "" });
   const [editingId, setEditingId] = useState(null);
 
@@ -58,6 +64,17 @@ function App() {
     });
   };
 
+  const handleDelete = (id) => {
+    setContactos((prev) => prev.filter((contacto) => contacto.id !== id));
+    if (editingId === id) {
+      resetForm();
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(contactos));
+  }, [contactos]);
+
   return (
     <div className="app-shell">
       <header className="app-header">
@@ -75,78 +92,13 @@ function App() {
       </header>
 
       <main className="app-main">
-        <section className="panel panel-form">
-          <div className="panel-header panel-header-form">
-            <div>
-              <span className="panel-tag">Formulario</span>
-              <h2>{isEditing ? "Editar contacto" : "Nuevo contacto"}</h2>
-            </div>
-            <p>
-              {isEditing
-                ? "Actualiza la información y guarda para reemplazar el contacto existente."
-                : "Completa el formulario para añadir un nuevo contacto a la agenda."}
-            </p>
-          </div>
-
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="input-grid grid-2">
-              <div className="input-group">
-                <label htmlFor="nombre">Nombre completo</label>
-                <input
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
-                  onChange={handleChange}
-                  placeholder="Ej: María González"
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="correo">Correo</label>
-                <input
-                  id="correo"
-                  name="correo"
-                  value={formData.correo}
-                  onChange={handleChange}
-                  placeholder="Ej: nombre@dominio.com"
-                />
-              </div>
-            </div>
-
-            <div className="input-grid grid-2">
-              <div className="input-group">
-                <label htmlFor="telefono">Teléfono</label>
-                <input
-                  id="telefono"
-                  name="telefono"
-                  value={formData.telefono}
-                  onChange={handleChange}
-                  placeholder="Ej: 300 123 4567"
-                />
-              </div>
-              <div className="input-group">
-                <label htmlFor="etiqueta">Etiqueta</label>
-                <input
-                  id="etiqueta"
-                  name="etiqueta"
-                  value={formData.etiqueta}
-                  onChange={handleChange}
-                  placeholder="Ej: Cliente, Amigo, Proveedor"
-                />
-              </div>
-            </div>
-
-            <div className="form-actions">
-              <button type="submit" className="button primary">
-                {isEditing ? "Guardar cambios" : "Agregar contacto"}
-              </button>
-              {isEditing && (
-                <button type="button" className="button secondary" onClick={resetForm}>
-                  Cancelar
-                </button>
-              )}
-            </div>
-          </form>
-        </section>
+        <FormularioContactos 
+          formData={formData}
+          onChange={handleChange}
+          onSubmit={handleSubmit}
+          isEditing={isEditing}
+          onReset={resetForm}
+        />
 
         <section className="panel panel-list">
           <div className="panel-header panel-header-list">
@@ -166,6 +118,7 @@ function App() {
                 correo={contacto.correo}
                 etiqueta={contacto.etiqueta}
                 onEdit={() => handleEdit(contacto)}
+                onDelete={() => handleDelete(contacto.id)}
               />
             ))}
           </div>
