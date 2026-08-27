@@ -1,9 +1,0 @@
-{
-  "contacts": [
-    { "id": 1, "nombre": "Ana Torres", "telefono": "300 123 4567", "correo": "ana.torres@sena.edu.co", "etiqueta": "Compañera" },
-    { "id": 2, "nombre": "Cristian Acevedo", "telefono": "300 765 4321", "correo": "cristian@sena.edu.co", "etiqueta": "Instructor" },
-    { "id": 3, "nombre": "Gustavo Bolaños", "telefono": "321 753 2037", "correo": "gustavo@sena.edu.co", "etiqueta": "Instructor" },
-    { "id": 4, "nombre": "Beatriz Salazar", "telefono": "310 222 4455", "correo": "beatriz@sena.edu.co", "etiqueta": "Compañera" },
-    { "id": 5, "nombre": "Manuela Ríos", "telefono": "313 908 1122", "correo": "manuela@sena.edu.co", "etiqueta": "Cliente" }
-  ]
-}
